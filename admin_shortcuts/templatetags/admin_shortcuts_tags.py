@@ -5,24 +5,16 @@ from django import __version__ as django_version
 from django import template
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-
-if float(django_version[0:3]) >= 4.0:
-    from django.utils.encoding import force_str
-else:
-    from django.utils.encoding import force_text as force_str
+# django4 compatibility
+from django.utils.encoding import force_str
 
 try:
     from django.core.urlresolvers import reverse
 except ImportError:
     from django.urls import reverse
-
-if float(django_version[0:3]) >= 4.0:
-    from django.utils.translation import gettext
-    from django.utils.translation import gettext_lazy as _
-else:
-    from django.utils.translation import ugettext as gettext
-    from django.utils.translation import ugettext_lazy as _
-
+# django4 compatibility
+from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 
 try:
     from django.utils.module_loading import import_module
